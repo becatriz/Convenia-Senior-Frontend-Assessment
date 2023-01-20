@@ -1,0 +1,80 @@
+:root {
+  --primary-color-base: #940dff;
+  --primary-color-base-rgb: 255, 102, 51;
+  --primary-color-gradient: linear-gradient(270deg, #940dff 0%, #9872ed 100%);
+  --primary-color-50: #9872ed;
+
+  --secondary-color-base: #121e48;
+  --secondary-color-base-rgb: 33, 51, 60;
+  --secondary-color-gradient: linear-gradient(270deg, #121e48 0%, #8b909f 100%);
+
+  --tertiary-color-base: #ff4bb7;
+  --tertiary-color-base-rgb: 33, 51, 60;
+  --tertiary-color-gradient: linear-gradient(270deg, #ff4bb7 0%, #dda5c7 100%);
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #eceff1;
+  transition: background 0.5s ease-out;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+details summary {
+  list-style: none;
+}
+
+ol,
+ul {
+  list-style: none outside none;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}

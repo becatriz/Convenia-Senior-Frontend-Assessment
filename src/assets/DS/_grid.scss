@@ -1,0 +1,144 @@
+@import './variables';
+
+.container {
+  padding: 0 24px;
+  margin: 0 auto;
+  max-width: 1072px;
+  width: 100%;
+}
+
+$horizontalAlignments: (
+  "start": "flex-start",
+  "center": "center",
+  "end": "flex-end",
+  "between": "space-between",
+  "around": "space-around",
+  "evenly": "space-evenly"
+);
+
+$verticalAlignments: (
+  "top": "flex-start",
+  "middle": "center",
+  "bottom": "flex-end",
+  "stretch": "stretch"
+);
+
+@function gridWidth($width) {
+  @return (calc($width / 12) * 100) * 1%;
+}
+
+.grid {
+  margin: 0;
+
+  .row {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    &.no-wrap {
+      flex-wrap: nowrap;
+    }
+
+    @each $alignment-index, $alignment in $horizontalAlignments {
+      &.#{$alignment-index} {
+        justify-content: #{$alignment};
+      }
+    }
+
+    @each $alignment-index, $alignment in $verticalAlignments {
+      &.#{$alignment-index} {
+        align-items: #{$alignment};
+      }
+    }
+
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .col {
+      padding: 0 2px;
+      min-height: 1px;
+      box-sizing: border-box;
+      margin-bottom: 24px;
+      order: 0;
+
+      @each $alignment-index, $alignment in $verticalAlignments {
+        &.#{$alignment-index} {
+          align-self: #{$alignment};
+        }
+      }
+
+      @for $i from 1 through 12 {
+        &.s#{$i} {
+          width: gridWidth($i);
+        }
+
+        @media #{$medium-and-up} {
+          &.m#{$i} {
+            width: gridWidth($i) !important;
+          }
+        }
+
+        @media #{$large-and-up} {
+          &.l#{$i} {
+            width: gridWidth($i) !important;
+          }
+        }
+      }
+
+      &.first {
+        order: -1;
+      }
+
+      &.first-s {
+        @media #{$small-and-down} {
+          order: -1;
+        }
+      }
+
+      &.first-m {
+        @media #{$medium-and-up} {
+          order: -1;
+        }
+      }
+
+      &.first-l {
+        @media #{$large-and-up} {
+          order: -1;
+        }
+      }
+
+      &.last {
+        order: 1;
+      }
+
+      &.last-s {
+        @media #{$small-and-down} {
+          order: 1;
+        }
+      }
+
+      &.last-m {
+        @media #{$medium-and-up} {
+          order: 1;
+        }
+      }
+
+      &.last-l {
+        @media #{$large-and-up} {
+          order: 1;
+        }
+      }
+
+      &.gutter-8 .row .col {
+        padding: 0 4px;
+      }
+    }
+  }
+}

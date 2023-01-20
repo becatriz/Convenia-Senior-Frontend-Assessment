@@ -1,0 +1,17 @@
+@import './variables';
+
+.card {
+    width: 32%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 150px;
+    background: color("neutral", "white");
+    border: 1px solid color("neutral", "black");
+    height: auto;
+
+    @media #{$small-and-down} {
+        width: 100%;
+        margin-top: 100px;
+      }
+}
