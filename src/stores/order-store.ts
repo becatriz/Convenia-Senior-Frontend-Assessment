@@ -109,8 +109,6 @@ export const useOrderStore = defineStore("order-store", {
         };
       });
 
-      console.log(currencyDrinks);
-
       return currencyDrinks.reduce((acc, item) => {
         const value = item.value * item.amount;
         return acc + value;
