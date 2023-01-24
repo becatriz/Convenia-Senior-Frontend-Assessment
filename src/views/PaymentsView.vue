@@ -76,9 +76,12 @@ async function handlePaymentValue() {
   await createPayments(payload(Number(value)));
 
   handlePayment(0);
+
+  setIsLoading(false);
 }
 
 async function checkValuePayments(value: number) {
+  setIsLoading(true);
   const total = Number(value - getTotalAccount.value.total).toFixed(2);
 
   if (value > getTotalAccount.value.total) {
