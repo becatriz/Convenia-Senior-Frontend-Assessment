@@ -1,0 +1,22 @@
+query GetCurrencyConversion(
+  $baseCurrency: String!
+  $convertCurrencies: [String]!
+) {
+  currencyConversion(
+    baseCurrency: $baseCurrency
+    convertCurrencies: $convertCurrencies
+  ) {
+    baseCurrencyInfo {
+      code
+      symbol
+    }
+    conversions {
+      currencyInfo {
+        code
+        symbol
+      }
+      rate
+      timestamp
+    }
+  }
+}
