@@ -17,4 +17,8 @@ export const usePersonStore = defineStore("person-store", {
   getters: {
     getPerson: (state) => state.person,
   },
+
+  persist: {
+    enabled: true,
+  },
 });
