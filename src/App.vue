@@ -5,8 +5,7 @@ import { usePersonStore } from "@/stores/person-store";
 import { ref, onMounted } from "vue";
 import { WEEKDAY } from "@/utils/constants";
 
-import HeaderGlobal from "./components/HeaderGlobal.vue";
-import type { WeekDay } from "./types/weekday";
+import HeaderUI from "./components/components-ui/HeaderUI.vue";
 
 const storePerson = usePersonStore();
 const { getPerson } = storeToRefs(storePerson);
@@ -26,13 +25,13 @@ onMounted(() => {
   const today = new Date();
 
   hours.value = `${getHours(today.getHours())}:${getMinutes(
-    today.getMinutes()
+    today.getMinutes(),
   )}`;
-  weekday.value = WEEKDAY[today.getDay() as keyof WeekDay];
+  weekday.value = WEEKDAY[today.getDay()];
 });
 </script>
 
 <template>
-  <HeaderGlobal :user="getPerson.name" :hours="hours" :weekday="weekday" />
+  <HeaderUI :user="getPerson.name" :hours="hours" :weekday="weekday" />
   <RouterView />
 </template>
