@@ -5,7 +5,7 @@ import factories from "./factories";
 import models from "./modules";
 import routes from "./routes";
 
-function makeServer({ environment = "development", timing = 1000 } = {}) {
+function makeServer({ environment = "development", timing = 0 } = {}) {
   const server = new Server({
     environment,
     models,
