@@ -19,20 +19,6 @@ $base-size: 16;
   letter-spacing: -0.02em;
 }
 
-%underline {
-  text-decoration-line: underline;
-}
-
-%uppercase {
-  text-transform: uppercase;
-}
-
-%ellipsis-text {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
 $fontWeight: 400;
 
 @while $fontWeight <= 900 {
@@ -63,135 +49,82 @@ $lineHeight: 100;
   $lineHeight: $lineHeight + 10;
 }
 
-/** Display **/
-%display-lt-40-900 {
-  @extend %font-family-lato, %font-weight-900, %font-size-40, %line-height-120, %letter-spacing;
-}
-%display-os-20-400 {
-  @extend %font-family-open-sans, %font-size-20, %line-height-140, %letter-spacing;
-}
-
 /** Heading **/
-%heading-lt-32-900 {
-  @extend %font-family-lato, %font-weight-900, %font-size-32, %line-height-130, %letter-spacing;
-}
 %heading-lt-26-900 {
-  @extend %font-family-lato, %font-weight-900, %font-size-26, %line-height-130, %letter-spacing;
-}
-%heading-os-24-800 {
-  @extend %font-family-open-sans, %font-weight-800, %font-size-24, %line-height-140, %letter-spacing;
-}
-%heading-os-18-700 {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-18, %line-height-140, %letter-spacing;
+  @extend %font-family-lato,
+    %font-weight-900,
+    %font-size-26,
+    %line-height-130,
+    %letter-spacing;
 }
 %heading-os-18-600 {
-  @extend %font-family-open-sans, %font-weight-600, %font-size-18, %line-height-140, %letter-spacing;
+  @extend %font-family-open-sans,
+    %font-weight-600,
+    %font-size-18,
+    %line-height-140,
+    %letter-spacing;
 }
 
 /** Paragraph **/
 
-/* Lato */
-%paragraph-lato-40-900 {
-  @extend %font-family-lato, %font-weight-900, %font-size-40, %line-height-120;
-}
-
 /* Open Sans*/
 %paragraph-os-16-700 {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-16, %line-height-160;
+  @extend %font-family-open-sans,
+    %font-weight-700,
+    %font-size-16,
+    %line-height-160;
 }
 %paragraph-os-16-600 {
-  @extend %font-family-open-sans, %font-weight-600, %font-size-16, %line-height-160;
+  @extend %font-family-open-sans,
+    %font-weight-600,
+    %font-size-16,
+    %line-height-160;
 }
 %paragraph-os-16-400 {
-  @extend %font-family-open-sans, %font-weight-400, %font-size-16, %line-height-160, %letter-spacing;
+  @extend %font-family-open-sans,
+    %font-weight-400,
+    %font-size-16,
+    %line-height-160,
+    %letter-spacing;
 }
 %paragraph-os-14-700 {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-14, %line-height-160, %letter-spacing;
+  @extend %font-family-open-sans,
+    %font-weight-700,
+    %font-size-14,
+    %line-height-160,
+    %letter-spacing;
 }
 %paragraph-os-14-600 {
-  @extend %font-family-open-sans, %font-weight-600, %font-size-14, %line-height-160, %letter-spacing;
+  @extend %font-family-open-sans,
+    %font-weight-600,
+    %font-size-14,
+    %line-height-160,
+    %letter-spacing;
 }
 %paragraph-os-14-400 {
-  @extend %font-family-open-sans, %font-weight-400, %font-size-14, %line-height-160, %letter-spacing;
+  @extend %font-family-open-sans,
+    %font-weight-400,
+    %font-size-14,
+    %line-height-160,
+    %letter-spacing;
 }
 %paragraph-os-12-500 {
-  @extend %font-family-open-sans, %font-weight-500, %font-size-12, %line-height-160;
+  @extend %font-family-open-sans,
+    %font-weight-500,
+    %font-size-12,
+    %line-height-160;
 }
 %paragraph-os-12-600 {
-  @extend %font-family-open-sans, %font-weight-600, %font-size-12, %line-height-160;
+  @extend %font-family-open-sans,
+    %font-weight-600,
+    %font-size-12,
+    %line-height-160;
 }
 
 /** Labels **/
-%label-os-24-800 {
-  @extend %font-family-open-sans, %font-weight-800, %font-size-24, %line-height-default, %letter-spacing;
-}
-
-%label-os-16-900 {
-  @extend %font-family-open-sans, %font-weight-900, %font-size-16, %line-height-default;
-}
-%label-os-16-700 {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-16, %line-height-default;
-}
-%label-os-16-500 {
-  @extend %font-family-open-sans, %font-weight-500, %font-size-16, %letter-spacing, %line-height-default;
-}
-%label-os-16-600 {
-  @extend %font-family-open-sans, %font-weight-600, %font-size-16, %letter-spacing, %line-height-default;
-}
-%label-os-16-400 {
-  @extend %font-family-open-sans, %font-size-16, %letter-spacing, %line-height-default;
-}
-
-%label-os-15-600 {
-  @extend %font-family-open-sans, %font-weight-600, %font-size-15, %line-height-default;
-}
-
-%label-os-15-700-ul {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-15, %line-height-130, %underline;
-}
-%label-os-15-700 {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-15, %line-height-default;
-}
-%label-os-15-400 {
-  @extend %font-family-open-sans, %font-weight-400, %font-size-15, %line-height-default;
-}
-%label-os-14-700 {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-14, %line-height-default;
-}
-%label-os-14-600 {
-  @extend %font-family-open-sans, %font-weight-600, %font-size-14, %line-height-default;
-}
-%label-os-14-500 {
-  @extend %font-family-open-sans, %font-weight-500, %font-size-14, %line-height-default;
-}
-%label-os-14-400 {
-  @extend %font-family-open-sans, %font-weight-400, %font-size-14, %letter-spacing, %line-height-default;
-}
-%label-os-12-900 {
-  @extend %font-family-open-sans, %font-weight-900, %font-size-12, %line-height-default;
-}
-%label-os-12-700-uc {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-12, %uppercase, %line-height-default;
-}
-%label-os-12-700 {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-12, %line-height-default;
-}
 %label-os-12-600 {
-  @extend %font-family-open-sans, %font-weight-600, %font-size-12, %line-height-default;
-}
-%label-os-12-500 {
-  @extend %font-family-open-sans, %font-weight-500, %font-size-12, %line-height-default;
-}
-%label-os-12-400 {
-  @extend %font-family-open-sans, %font-weight-400, %font-size-12, %line-height-default;
-}
-%label-os-11-700 {
-  @extend %font-family-open-sans, %font-weight-700, %font-size-11, %line-height-default;
-}
-%label-os-11-800-uc {
-  @extend %font-family-open-sans, %font-weight-800, %font-size-11, %uppercase, %line-height-default;
-  letter-spacing: 0.05em;
-}
-%label-os-10-700{
-  @extend %font-family-open-sans, %font-weight-700, %font-size-10, %line-height-default;
+  @extend %font-family-open-sans,
+    %font-weight-600,
+    %font-size-12,
+    %line-height-default;
 }

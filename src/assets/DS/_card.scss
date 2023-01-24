@@ -1,17 +1,22 @@
-@import './variables';
+@import "./variables";
 
 .card {
-    width: 32%;
-    margin: 0 auto;
-    padding: 1rem;
-    border-radius: 6px;
-    margin-top: 150px;
-    background: color("neutral", "white");
-    border: 1px solid color("neutral", "black");
-    height: auto;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 150px;
+  background: color("neutral", "white");
+  border: 1px solid color("neutral", "black");
+  height: auto;
 
-    @media #{$small-and-down} {
-        width: 100%;
-        margin-top: 100px;
-      }
+  @media #{$small-and-down} {
+    width: 100%;
+    margin-top: 100px;
+  }
+
+  &__title {
+    text-align: center;
+    @extend %heading-os-18-600;
+  }
 }

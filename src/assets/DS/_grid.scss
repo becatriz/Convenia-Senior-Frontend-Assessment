@@ -1,4 +1,4 @@
-@import './variables';
+@import "./variables";
 
 .container {
   padding: 0 24px;
@@ -13,14 +13,14 @@ $horizontalAlignments: (
   "end": "flex-end",
   "between": "space-between",
   "around": "space-around",
-  "evenly": "space-evenly"
+  "evenly": "space-evenly",
 );
 
 $verticalAlignments: (
   "top": "flex-start",
   "middle": "center",
   "bottom": "flex-end",
-  "stretch": "stretch"
+  "stretch": "stretch",
 );
 
 @function gridWidth($width) {
