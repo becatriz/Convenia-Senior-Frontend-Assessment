@@ -24,10 +24,10 @@ export const useMediaQuerys = () => {
     removeEventResize: () => {
       window.removeEventListener("resize", handleResize);
     },
-    smallScreenAndDown: (): Boolean => {
+    smallScreenAndDown: (): boolean => {
       return width.value <= 600;
     },
-    mediumScreenAndUp(): Boolean {
+    mediumScreenAndUp(): boolean {
       return width.value >= 601;
     },
   };
