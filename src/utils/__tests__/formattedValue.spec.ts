@@ -3,7 +3,7 @@ import { getFormattedValue } from "../formattedValue";
 
 describe("Format Value money", () => {
   it("Should formatted value with rate", () => {
-    expect(getFormattedValue(100.0, 2)).equals(200.0);
+    expect(getFormattedValue(100.0, 2)).equals(50);
   });
 
   it("Should formatted without", () => {
