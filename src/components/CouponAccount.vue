@@ -55,15 +55,11 @@ const props = defineProps({
           </td>
           <td class="coupon__und">
             {{ props.currency?.symbol || "R$" }}
-            {{ item.value.toFixed(2) }}
+            {{ getFormattedValue(item.value, props.currency?.rate) }}
           </td>
           <td class="coupon__value">
             {{ props.currency?.symbol || "R$" }}
-            {{
-              (item.value * item.amount * (props.currency?.rate || 1)).toFixed(
-                2,
-              )
-            }}
+            {{ (item.amount * (item.value / props.currency?.rate)).toFixed(2) }}
           </td>
         </tr>
       </tbody>

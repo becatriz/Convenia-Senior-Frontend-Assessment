@@ -8,8 +8,8 @@ export const getFormattedValue = (
   value: number,
   rate: number | undefined,
 ): number => {
-  if (rate) {
-    return Number((value * rate).toFixed(2));
+  if (rate && rate > 1) {
+    return Number((value / rate).toFixed(2));
   }
 
   return value;

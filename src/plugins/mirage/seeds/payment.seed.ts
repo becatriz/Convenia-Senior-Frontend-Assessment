@@ -80,24 +80,7 @@ export default function (server: Server) {
   server.create("payment", {
     id: "8",
     total: 85,
-    payments: [
-      {
-        date: new Date(),
-        value: 20.0,
-      },
-      {
-        date: new Date(),
-        value: 50.0,
-      },
-      {
-        date: new Date(),
-        value: 10.0,
-      },
-      {
-        date: new Date(),
-        value: 5.0,
-      },
-    ],
+    payments: [],
   });
 
   server.create("payment", {
