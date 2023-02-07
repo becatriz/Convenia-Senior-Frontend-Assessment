@@ -27,10 +27,10 @@ export const getFormattedHour = (date?: Date): string => {
   return `${_getHours(today.getHours())}:${_getMinutes(today.getMinutes())}`;
 };
 
-function _getMinutes(min: number): string | number {
+export function _getMinutes(min: number): string | number {
   return String(min).length > 1 ? min : `0${min}`;
 }
 
-function _getHours(hour: number): string | number {
+export function _getHours(hour: number): string | number {
   return String(hour).length > 1 ? hour : `0${hour}`;
 }

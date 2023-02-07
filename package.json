@@ -7,7 +7,7 @@
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
-    "coverage": "vitest --environment jsdom --root src/ --coverage",
+    "coverage": "vitest --environment jsdom --coverage",
     "build-only": "vite build",
     "prepare": "husky install",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
