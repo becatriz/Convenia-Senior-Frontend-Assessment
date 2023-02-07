@@ -3,6 +3,9 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Node version" src="https://img.shields.io/badge/node-16.17-green.svg?cacheSeconds=2592000" />
   <img alt="Social " src="https://img.shields.io/github/followers/becatriz?style=social" />
+  <a href="https://codecov.io/gh/becatriz/Convenia-Senior-Frontend-Assessment" > 
+ <img src="https://codecov.io/gh/becatriz/Convenia-Senior-Frontend-Assessment/branch/master/graph/badge.svg?token=T2PNN7TX7Y"/> 
+ </a>
 </p>
 
 # Barcontrol
