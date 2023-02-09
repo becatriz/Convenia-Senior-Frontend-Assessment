@@ -5,7 +5,6 @@ import type { TotalOrder } from "@/types/totalOrder";
 import { usePaymentsStore } from "./payment-store";
 import { useCurrencyStore } from "./currency-store";
 import { getFormattedValue } from "@/utils/formattedValue";
-import { usePersonStore } from "./person-store";
 
 interface IOrders {
   orders: Array<Items>;
@@ -24,23 +23,25 @@ export const useOrderStore = defineStore("order-store", {
   }),
   actions: {
     async updateOrder(payload: Array<Items>): Promise<void> {
-      const { setOrder, code } = useOrderStore();
+      const { data } = await Api.put(`/order/${this.code}`, payload);
 
-      const { data } = await Api.put(`/order/${code}`, payload);
-
-      setOrder(data);
+      this.orders = data;
     },
 
     async fetchOrders(): Promise<void> {
-      const { setOrder } = useOrderStore();
-
       const { data } = await Api.get("/order");
 
-      setOrder(data);
+      this.setOrder(data);
     },
 
     setOrder(orders: Array<Items>): void {
       this.orders = orders;
+
+      orders.forEach((item) => {
+        this.setCodeTable(item.code);
+        this.setTotalPartial(this.getTotalAccount);
+        this.setConfirmedOrder(this.getTotalAccount);
+      });
     },
 
     setCodeTable(code: string): void {
@@ -193,6 +194,8 @@ export const useOrderStore = defineStore("order-store", {
       });
 
       const total = totalDrinks + totalFoods + totalServings + totalSalads;
+
+      console.log(total);
 
       return tableAccount.reduce((acc, item) => {
         if (item?.id === state.code) {

@@ -31,7 +31,7 @@ export const useCurrencyStore = defineStore("currency-store", {
 
       if (isCurrencyDefault) {
         return {
-          symbol: state.baseCurrency?.baseCurrencyInfo?.symbol || "",
+          symbol: state.baseCurrency?.baseCurrencyInfo?.symbol || "R$",
           rate: 1,
         };
       }
