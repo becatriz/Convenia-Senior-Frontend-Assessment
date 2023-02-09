@@ -45,7 +45,7 @@ function getValue(item: Items): string {
   if (item.status === "free") {
     return `Mesa ${item.code}`;
   }
-  return `${props.currency?.symbol || "R$"} ${total}`;
+  return `${props.currency?.symbol} ${total}`;
 }
 
 function getTotalAccount(code: string): number | undefined {

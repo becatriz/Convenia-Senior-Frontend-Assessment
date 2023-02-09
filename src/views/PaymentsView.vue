@@ -86,9 +86,7 @@ async function checkValuePayments(value: number) {
 
   if (value > getTotalAccount.value.total) {
     toast.success(
-      `Pagamento efetuado com sucesso!. Troco do cliente: ${
-        getCurrencyChosen.value?.symbol || "R$"
-      } ${total}`,
+      `Pagamento efetuado com sucesso!. Troco do cliente: ${getCurrencyChosen.value?.symbol} ${total}`,
     );
 
     await updateOrder(getPayload());

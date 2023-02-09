@@ -54,11 +54,11 @@ const props = defineProps({
             {{ getFormattedHour(item.date as unknown as Date) }}
           </td>
           <td class="coupon__und">
-            {{ props.currency?.symbol || "R$" }}
+            {{ props.currency?.symbol }}
             {{ getFormattedValue(item.value, props.currency?.rate) }}
           </td>
           <td class="coupon__value">
-            {{ props.currency?.symbol || "R$" }}
+            {{ props.currency?.symbol }}
             {{
               (
                 getFormattedValue(item.value, props.currency?.rate) *
@@ -75,7 +75,7 @@ const props = defineProps({
     <section class="total">
       <p>TOTAL PARCIAL</p>
       <p>
-        {{ props.currency?.symbol || "R$" }}
+        {{ props.currency?.symbol }}
         {{ props.partialTotal.toFixed(2) }}
       </p>
     </section>
@@ -94,7 +94,7 @@ const props = defineProps({
               {{ getFormattedDateWithHour(item.date) }}
             </td>
             <td class="payments__total">
-              - {{ props.currency?.symbol || "R$" }}
+              - {{ props.currency?.symbol }}
               {{ item.value.toFixed(2) }}
             </td>
           </tr>
