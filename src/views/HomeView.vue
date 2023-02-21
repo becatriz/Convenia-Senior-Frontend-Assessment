@@ -30,6 +30,7 @@ const storeCurrency = useCurrencyStore();
 
 const { chosenOption } = storeToRefs(storeCurrency);
 const { person } = storeToRefs(storePerson);
+const { getCurrencyChosen } = storeToRefs(storeCurrency);
 const { orders, orderTotalConfirmed, getOrders, getTotalAccount } =
   storeToRefs(storeOrders);
 
@@ -38,8 +39,6 @@ const { fetchPayments } = usePaymentsStore();
 const { fetchOrders, setCodeTable, setConfirmedOrder, setTotalPartial } =
   useOrderStore();
 const { setBaseCurrencyInfo, setChosenCurrency } = useCurrencyStore();
-
-const { getCurrencyChosen } = storeCurrency;
 
 const personName = ref("");
 const isOpenModal = ref(true);

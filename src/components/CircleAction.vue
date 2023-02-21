@@ -59,8 +59,8 @@ function getTotalAccount(code: string): number | undefined {
   <div class="grid container">
     <div class="row center">
       <div
-        v-for="(item, index) in props.items"
-        :key="index"
+        v-for="item in props.items"
+        :key="item.code"
         class="wrapper"
         @click="setTable(item.code)"
       >
