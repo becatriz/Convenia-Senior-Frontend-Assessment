@@ -38,7 +38,7 @@ npm install
 
 ## ⚠️ CAUTION ⚠️
 
-For a more secure execution of the system, it is important to raise the [GraphQL currency conversion API](https://gitlab.com/convenia/assessments/currency-conversion) on port `3000`
+For a more secure execution of the system, it is important to raise the [GraphQL currency conversion API](https://gitlab.com/convenia/assessments/currency-conversion) on port `3000`. But has configuration mock server with mirage API, that's why sisytem won't break
 
 ## ⚙️ Running the tests
 
