@@ -5,7 +5,6 @@ import type { TotalOrder } from "@/types/totalOrder";
 import { usePaymentsStore } from "./payment-store";
 import { useCurrencyStore } from "./currency-store";
 import { getFormattedValue } from "@/utils/formattedValue";
-import { usePersonStore } from "./person-store";
 
 interface IOrders {
   orders: Array<Items>;
@@ -24,23 +23,25 @@ export const useOrderStore = defineStore("order-store", {
   }),
   actions: {
     async updateOrder(payload: Array<Items>): Promise<void> {
-      const { setOrder, code } = useOrderStore();
+      const { data } = await Api.put(`/order/${this.code}`, payload);
 
-      const { data } = await Api.put(`/order/${code}`, payload);
-
-      setOrder(data);
+      this.orders = data;
     },
 
     async fetchOrders(): Promise<void> {
-      const { setOrder } = useOrderStore();
-
       const { data } = await Api.get("/order");
 
-      setOrder(data);
+      this.setOrder(data);
     },
 
     setOrder(orders: Array<Items>): void {
       this.orders = orders;
+
+      orders.forEach((item) => {
+        this.setCodeTable(item.code);
+        this.setTotalPartial(this.getTotalAccount);
+        this.setConfirmedOrder(this.getTotalAccount);
+      });
     },
 
     setCodeTable(code: string): void {
@@ -96,87 +97,34 @@ export const useOrderStore = defineStore("order-store", {
     getOrderTotalConfirmed: (state) => state.orderTotalConfirmed,
     getOrderTotalPartial: (state) =>
       state.orderTotalPartial.find((value) => value.code == state.code),
-    totalDrinks: (state): number => {
-      const { getCurrencyChosen } = useCurrencyStore();
+    getTotalEachItem: (state) => {
+      return (typeItem: string) => {
+        const { getCurrencyChosen } = useCurrencyStore();
 
-      const drinks = state.command.map((item) => item.drinks).flat();
-      if (!drinks.length) return 0;
+        const items = state.command
+          ?.map((item) => item[typeItem as unknown as keyof Command])
+          .flat();
 
-      const currencyDrinks = drinks.map((item) => {
-        return {
-          ...item,
-          value: getFormattedValue(item.value, getCurrencyChosen?.rate),
-        };
-      });
+        if (!items?.length) return 0;
 
-      return currencyDrinks.reduce((acc, item) => {
-        const value = item.value * item.amount;
-        return acc + value;
-      }, 0);
-    },
-    totalFoods: (state): number => {
-      const { getCurrencyChosen } = useCurrencyStore();
+        const currencyItems = items.map((item: any) => {
+          return {
+            ...item,
+            value: getFormattedValue(item.value, getCurrencyChosen?.rate),
+          };
+        });
 
-      const foods = state.command.map((item) => item.foods).flat();
-
-      if (!foods.length) return 0;
-
-      const currencyFoods = foods.map((item) => {
-        return {
-          ...item,
-          value: getFormattedValue(item.value, getCurrencyChosen?.rate),
-        };
-      });
-
-      return currencyFoods.reduce((acc, item) => {
-        const value = item.value * item.amount;
-        return acc + value;
-      }, 0);
-    },
-
-    totalServings: (state): number => {
-      const { getCurrencyChosen } = useCurrencyStore();
-
-      const servings = state.command.map((item) => item.servings).flat();
-
-      if (!servings.length) return 0;
-
-      const currencyServings = servings.map((item) => {
-        return {
-          ...item,
-          value: getFormattedValue(item.value, getCurrencyChosen?.rate),
-        };
-      });
-
-      return currencyServings.reduce((acc, item) => {
-        const value = item.value * item.amount;
-        return acc + value;
-      }, 0);
-    },
-
-    totalSalads: (state): number => {
-      const { getCurrencyChosen } = useCurrencyStore();
-
-      const salads = state.command.map((item) => item.salads).flat();
-
-      if (!salads.length) return 0;
-
-      const currencySalads = salads.map((item) => {
-        return {
-          ...item,
-          value: getFormattedValue(item.value, getCurrencyChosen?.rate),
-        };
-      });
-
-      return currencySalads.reduce((acc, item) => {
-        const value = item.value * item.amount;
-        return acc + value;
-      }, 0);
+        return currencyItems.reduce((acc, item) => {
+          const value = item.value * item.amount;
+          return acc + value;
+        }, 0);
+      };
     },
 
     getTotalAccount: (state): TotalOrder => {
-      const { totalDrinks, totalFoods, totalServings, totalSalads } =
-        useOrderStore();
+      const { getTotalEachItem } = useOrderStore();
+      const items: string[] = ["drinks", "foods", "servings", "salads"];
+
       const { getPayments } = usePaymentsStore();
 
       const tableAccount = getPayments.map((value) => {
@@ -192,15 +140,17 @@ export const useOrderStore = defineStore("order-store", {
         }
       });
 
-      const total = totalDrinks + totalFoods + totalServings + totalSalads;
+      const total = items.reduce((acc, item) => {
+        return acc + getTotalEachItem(item);
+      }, 0);
 
       return tableAccount.reduce((acc, item) => {
         if (item?.id === state.code) {
-          const totalAccountWithPayments = total - item.total;
+          const totalAccountWithPayments = total - item?.total;
 
           return {
             ...acc,
-            code: item.id,
+            code: item?.id,
             total: Math.abs(totalAccountWithPayments),
           };
         }

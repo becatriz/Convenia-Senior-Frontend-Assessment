@@ -28,9 +28,10 @@ const storeOrders = useOrderStore();
 const storePerson = usePersonStore();
 const storeCurrency = useCurrencyStore();
 
-const { getCurrencyChosen, getChosenOption } = storeToRefs(storeCurrency);
-const { getPerson } = storeToRefs(storePerson);
-const { getOrders, getTotalAccount, getOrderTotalConfirmed } =
+const { chosenOption } = storeToRefs(storeCurrency);
+const { person } = storeToRefs(storePerson);
+const { getCurrencyChosen } = storeToRefs(storeCurrency);
+const { orders, orderTotalConfirmed, getOrders, getTotalAccount } =
   storeToRefs(storeOrders);
 
 const { setPerson } = usePersonStore();
@@ -118,11 +119,7 @@ function handleChoseCurrency(value: string) {
 
   setStatusIsLoading(true);
 
-  getOrders.value.forEach((item) => {
-    setCodeTable(item.code);
-    setTotalPartial(getTotalAccount.value);
-    setConfirmedOrder(getTotalAccount.value);
-  });
+  setTotalOrderInTable();
 
   setStatusIsLoading(false);
 }
@@ -133,13 +130,15 @@ async function getOrdersAndPayments() {
   await fetchPayments();
   await fetchOrders();
 
-  getOrders.value.forEach((item) => {
+  setStatusIsLoading(false);
+}
+
+function setTotalOrderInTable() {
+  orders.value.forEach((item) => {
     setCodeTable(item.code);
     setTotalPartial(getTotalAccount.value);
     setConfirmedOrder(getTotalAccount.value);
   });
-
-  setStatusIsLoading(false);
 }
 
 function setStatusIsLoading(status: boolean) {
@@ -177,29 +176,29 @@ onMounted(() => {
 </script>
 <template>
   <main>
-    <LoadingUI v-if="getPerson.name" :is-loading="isLoading" />
-    <div v-if="getPerson.name" class="content-table">
+    <LoadingUI v-if="person.name" :is-loading="isLoading" />
+    <div v-if="person.name" class="content-table">
       <div class="grid">
         <div class="row end">
           <SelectUI
             v-if="result"
             class="col s12"
             :items="currencyOptionsConversion"
-            :default="getChosenOption"
+            :default="chosenOption"
             @onchange="handleChoseCurrency"
           />
         </div>
       </div>
       <CircleAction
         :items="getOrders"
-        :account="getOrderTotalConfirmed"
+        :account="orderTotalConfirmed"
         :currency="getCurrencyChosen"
         @update:command="handleUpdateCommand"
         @close:command="handleCloseCommand"
       />
     </div>
     <ModalUI
-      :is-open-modal="!getPerson.name && isOpenModal"
+      :is-open-modal="!person.name && isOpenModal"
       @input:model-value="setNameValue"
     >
       <template #footer>

@@ -142,9 +142,10 @@ onMounted(async () => {
             >
               <TableUI
                 :title="line.name"
-                :value="`${
-                  getCurrencyChosen?.symbol || 'R$'
-                } ${getFormattedValue(line.value, getCurrencyChosen?.rate)}`"
+                :value="`${getCurrencyChosen?.symbol} ${getFormattedValue(
+                  line.value,
+                  getCurrencyChosen?.rate,
+                )}`"
               >
                 <template #component>
                   <InputMinPlusUI

@@ -13,6 +13,8 @@ import { ApolloClient, InMemoryCache } from "@apollo/client/core";
 
 import "./assets/main.scss";
 
+const urlGraphql = import.meta.env.VITE_APP_URL_API_GRAPHQL as string;
+
 if (import.meta.env.MODE === "development") {
   makeServer();
 }
@@ -21,7 +23,7 @@ const cache = new InMemoryCache();
 
 const apolloClient = new ApolloClient({
   cache,
-  uri: "http://localhost:3000/graphql",
+  uri: urlGraphql,
 });
 
 const pinia = createPinia();
